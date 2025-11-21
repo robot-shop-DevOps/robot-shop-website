@@ -1,72 +1,30 @@
-<div class="product-page">
+<!-- Rating Section -->
+<div class="rating">
+    <strong>Rating:</strong>
 
-    <!-- Message -->
-    <div class="message" ng-if="data.message">
-        {{ data.message }}
-    </div>
+    <span ng-if="data.rating.avg_rating > 0">
+        {{ (data.rating.avg_rating || 0) | number:1 }}
+        from {{ data.rating.rating_count || 0 }} votes
+    </span>
 
-    <!-- Product Title -->
-    <h3 ng-bind="data.product.name"></h3>
+    <span ng-if="data.rating.avg_rating == 0">
+        No votes yet. Vote now.
+    </span>
 
-    <!-- Product Image -->
-    <div class="productimage">
-        <img ng-src="/images/{{ data.product.sku }}.png"
-             alt="{{ data.product.name }}"
-             onerror="this.src='/media/no-image.png';">
-    </div>
+    <div class="rating-stars">
+        <span ng-repeat="vote in [1, 2, 3, 4, 5]">
 
-    <!-- Rating Section -->
-    <div class="rating">
-        <strong>Rating:</strong>
+            <!-- UPDATED ICON — replace with your star icon -->
+            <img 
+                ng-attr-id="vote-{{vote}}"     <!-- HTMLHint-safe id -->
+                class="vote-star"
+                alt="star {{ vote }}"
+                ng-mouseover="glowstan(vote, 1.0)"
+                ng-mouseleave="glowstan(vote, 0.5)"
+                ng-click="rateProduct(vote)"
+                ng-src="/media/star.png"
+            />
 
-        <span ng-if="data.rating.avg_rating > 0">
-            {{ (data.rating.avg_rating || 0) | number:1 }}
-            from {{ data.rating.rating_count || 0 }} votes
         </span>
-
-        <span ng-if="data.rating.avg_rating == 0">
-            No votes yet. Vote now.
-        </span>
-
-        <div class="rating-stars">
-            <span ng-repeat="vote in [1, 2, 3, 4, 5]">
-                <img id="vote-{{ vote }}"
-                     class="vote-star"
-                     alt="{{ vote }}"
-                     ng-mouseover="glowstan(vote, 1.0)"
-                     ng-mouseleave="glowstan(vote, 0.5)"
-                     ng-click="rateProduct(vote)"
-                     
-                     <!-- UPDATED ICON — replace with your star icon -->
-                     ng-src="/media/star.png"
-                />
-            </span>
-        </div>
     </div>
-
-    <!-- Description -->
-    <div class="description" ng-bind="data.product.description"></div>
-
-    <!-- Cart section -->
-    <div class="productcart">
-
-        <strong>Price:</strong>
-        €{{ (data.product.price || 0) | number:2 }}
-
-        <div ng-if="data.product.instock == 0" class="out-of-stock">
-            Out of stock
-        </div>
-
-        <div ng-if="data.product.instock > 0" class="in-stock">
-            Quantity:
-            <input type="number"
-                   min="1"
-                   max="10"
-                   ng-model="data.quantity"/>
-
-            <button ng-click="addToCart()">Add to cart</button>
-        </div>
-
-    </div>
-
 </div>
