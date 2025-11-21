@@ -1,9 +1,4 @@
-// eslint.config.js
-import js from "@eslint/js";
-
 export default [
-  js.configs.recommended,
-
   {
     files: ["**/*.js"],
 
@@ -14,8 +9,10 @@ export default [
         angular: "readonly",
         browser: true,
         es2021: true,
-      },
+      }
     },
+
+    extends: ["eslint:recommended"],
 
     rules: {
       "no-unused-vars": "warn",
@@ -23,9 +20,9 @@ export default [
       "no-console": "off",
       "no-var": "off",
       "no-extra-semi": "warn",
-      eqeqeq: "warn",
-      curly: "warn",
-      "no-empty": "warn",
+      "eqeqeq": "warn",
+      "curly": "warn",
+      "no-empty": "warn"
     }
   }
 ];
