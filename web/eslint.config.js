@@ -1,18 +1,26 @@
-export default [
+module.exports = [
   {
     files: ["**/*.js"],
 
     languageOptions: {
       ecmaVersion: 12,
-      sourceType: "script",
+      sourceType: "script",   // browser scripts, NOT modules
       globals: {
         angular: "readonly",
         browser: true,
-        es2021: true,
+        window: "readonly",
+        document: "readonly",
+        console: "readonly",
+        module: "readonly",
+        define: "readonly",
+        setTimeout: "readonly",
+        clearTimeout: "readonly",
+        getComputedStyle: "readonly",
       }
     },
 
     rules: {
+      // ESLint recommended (manually inlined)
       "constructor-super": "error",
       "for-direction": "error",
       "getter-return": "error",
@@ -63,6 +71,7 @@ export default [
       "use-isnan": "error",
       "valid-typeof": "error",
 
+      // Your rules
       "no-unused-vars": "warn",
       "no-undef": "error",
       "no-console": "off",
