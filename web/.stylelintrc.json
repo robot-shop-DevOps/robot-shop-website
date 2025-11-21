@@ -6,7 +6,6 @@
     "color-no-invalid-hex": true,
     "declaration-block-no-duplicate-properties": true,
 
-    "string-quotes": null,
     "length-zero-no-unit": null,
     "color-function-notation": null,
     "color-function-alias-notation": null,
