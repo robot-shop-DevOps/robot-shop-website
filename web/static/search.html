@@ -1,0 +1,29 @@
+<div class="search-page">
+
+    <!-- No results -->
+    <div ng-if="data.searchResults.length === 0">
+        <p>Sorry, nothing matches your search.</p>
+    </div>
+
+    <!-- Results -->
+    <div ng-if="data.searchResults.length > 0">
+        <h3>These excellent candidates match your search</h3>
+
+        <table class="search-table">
+            <tbody>
+                <tr ng-repeat="item in data.searchResults">
+                    <td>
+                        <a class="product" href="product/{{ item.sku }}">
+                            {{ item.name }}
+                        </a>
+                    </td>
+                    <td>{{ item.description }}</td>
+                    <td class="currency">
+                        €{{ (item.price || 0) | number:2 }}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>

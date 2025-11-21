@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="robotshop">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Robot Shop</title>
+
+  <!-- font -->
+  <link href="https://fonts.googleapis.com/css?family=Orbitron" rel="stylesheet">
+
+  <!-- styles (relative to /static/) -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/auto-complete.css">
+</head>
+<body ng-controller="shopform">
+
+  <!-- NAV -->
+  <div class="navbar">
+    <div class="logo"><a href="#!/">Robot Shop</a></div>
+
+    <div class="search-bar">
+      <input type="text" placeholder="Search robots..." ng-model="data.searchText">
+      <button ng-click="search()">Search</button>
+    </div>
+
+    <div class="nav-links">
+      <a href="#!/login">Login</a>
+      <a href="#!/cart">Cart ({{ data.cart.total || 0 }})</a>
+    </div>
+  </div>
+
+  <!-- main -->
+  <div class="main-wrapper">
+    <div ng-view></div>
+  </div>
+
+  <!-- Angular -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular-route.js"></script>
+
+  <!-- app scripts (relative) -->
+  <script src="js/app.module.js"></script>
+  <script src="js/routes.js"></script>
+  <script src="js/auto-complete.js"></script>
+
+  <script src="js/services/currentUser.service.js"></script>
+
+  <script src="js/controllers/shop.controller.js"></script>
+  <script src="js/controllers/search.controller.js"></script>
+  <script src="js/controllers/product.controller.js"></script>
+  <script src="js/controllers/cart.controller.js"></script>
+  <script src="js/controllers/shipping.controller.js"></script>
+  <script src="js/controllers/payment.controller.js"></script>
+  <script src="js/controllers/login.controller.js"></script>
+</body>
+</html>

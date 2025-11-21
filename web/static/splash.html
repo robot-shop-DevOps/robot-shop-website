@@ -1,0 +1,53 @@
+<div class="home-container">
+
+    <!-- HERO SECTION -->
+    <section class="hero-section">
+        <div class="hero-left">
+            <h1>Welcome to Robot Shop</h1>
+            <p>Your one-stop shop for premium robots, parts, and accessories.</p>
+            <button class="cta-btn" ng-click="search();">Start Shopping</button>
+        </div>
+
+        <div class="hero-right">
+            <img src="/static/images/robot.png" alt="Robot Mascot">
+        </div>
+    </section>
+
+
+    <!-- CATEGORY SECTION -->
+    <section class="feature-section">
+
+        <div class="feature-card">
+            <img src="/static/images/Watson.png" alt="Robots">
+            <h3>Explore Robots</h3>
+            <p>Meet our friendly robot family and choose your perfect companion.</p>
+        </div>
+
+        <div class="feature-card">
+            <img src="/static/images/accessories.png" alt="Accessories">
+            <h3>Robot Accessories</h3>
+            <p>Upgrade your robot with powerful modules and smart parts.</p>
+        </div>
+
+        <div class="feature-card">
+            <img src="/static/images/image.png" alt="Delivery">
+            <h3>Fast Delivery</h3>
+            <p>Worldwide shipping with fast processing times.</p>
+        </div>
+
+    </section>
+
+
+    <!-- TRENDING PRODUCTS -->
+    <h2 class="section-title">Trending Robots</h2>
+
+    <div class="trend-list">
+        <div class="trend-card" ng-repeat="p in data.trending">
+            <img src="/static/images/{{ p.sku }}.png" alt="{{ p.name }}">
+            <h4>{{ p.name }}</h4>
+            <p>€{{ p.price }}</p>
+            <a href="product/{{ p.sku }}" class="auth-btn" style="padding:8px;margin-top:10px;">View</a>
+        </div>
+    </div>
+
+</div>

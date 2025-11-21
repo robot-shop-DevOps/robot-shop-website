@@ -1,0 +1,12 @@
+{
+  "extends": "stylelint-config-standard",
+  "rules": {
+    "no-empty-source": null,
+    "block-no-empty": true,
+    "color-no-invalid-hex": true,
+    "declaration-block-no-duplicate-properties": true,
+    "string-quotes": "double",
+    "selector-max-id": 1,
+    "selector-max-universal": 1
+  }
+}

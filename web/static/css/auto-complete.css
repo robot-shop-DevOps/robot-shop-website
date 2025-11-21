@@ -1,0 +1,50 @@
+/* Autocomplete dropdown container */
+.autocomplete-suggestions {
+    position: absolute;
+    display: none;
+    z-index: 9999;
+    max-height: 254px;
+    overflow-y: auto;
+    box-sizing: border-box;
+
+    /* Dark theme background */
+    background: var(--bg-dark2);
+    border: 1px solid var(--neon-soft);
+    box-shadow: 0px 0px 8px rgba(0, 234, 255, 0.15);
+
+    text-align: left;
+    cursor: default;
+}
+
+/* Individual suggestion row */
+.autocomplete-suggestion {
+    position: relative;
+    padding: 6px 10px;
+    line-height: 22px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    font-size: 1.03em;
+    color: var(--text-light);
+    transition: 0.15s;
+}
+
+/* Highlighted text inside suggestion */
+.autocomplete-suggestion b {
+    color: var(--neon);
+    font-weight: bold;
+}
+
+/* Hover state */
+.autocomplete-suggestion:hover {
+    background: rgba(0, 234, 255, 0.15);
+    color: white;
+}
+
+/* When selected via keyboard (Up/Down arrows) */
+.autocomplete-suggestion.selected {
+    background: rgba(0, 234, 255, 0.25);
+    color: white;
+    box-shadow: inset 0 0 6px rgba(0, 234, 255, 0.4);
+}

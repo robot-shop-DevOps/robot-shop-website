@@ -1,0 +1,382 @@
+/* ==========================
+   GLOBAL THEME
+========================== */
+:root {
+    --primary: #00eaff;
+    --primary-light: #7cf2ff;
+    --bg1: #07151a;
+    --bg2: #0d2c35;
+    --panel: rgba(0, 50, 60, 0.35);
+    --panel-border: rgba(0, 255, 255, 0.25);
+    --text: #c8faff;
+
+    font-family: sans-serif;
+}
+
+body {
+    margin: 0;
+    background: linear-gradient(180deg, var(--bg1), var(--bg2));
+    color: var(--text);
+}
+
+/* ==========================
+   NAVBAR
+========================== */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 40px;
+    background: rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--primary);
+}
+
+.navbar a {
+    color: var(--primary);
+    text-decoration: none;
+    margin: 0 15px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 14px;
+}
+
+.logo {
+    font-size: 26px;
+    font-weight: bold;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.search-bar input {
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid var(--primary);
+    background: #0b1e23;
+    color: var(--primary-light);
+}
+
+.search-bar button {
+    padding: 8px 16px;
+    background: var(--primary);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* ==========================
+   MAIN WRAPPER
+========================== */
+.main-wrapper {
+    width: 92%;
+    max-width: 1200px;
+    margin: 40px auto;
+}
+
+/* ==========================
+   HERO SECTION (FIXED)
+========================== */
+.hero-section {
+    display: flex;
+    flex-direction: row;          /* side-by-side layout */
+    justify-content: space-between;
+    align-items: center;
+    padding: 60px 40px;
+    background: linear-gradient(135deg, #0b1e23, #12353d);
+    border-radius: 20px;
+    border: 1px solid var(--panel-border);
+}
+
+.hero-left .cta-btn {
+    display: block;
+    margin: 20px auto 0;
+}
+
+
+.hero-section h1 {
+    font-size: 38px;
+    font-family: Orbitron, sans-serif;
+    margin-bottom: 10px;
+}
+
+.hero-section p {
+    color: var(--primary-light);
+    font-size: 17px;
+    margin-bottom: 25px;
+}
+
+.cta-btn {
+    padding: 12px 24px;
+    background: var(--primary);
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+}
+.cta-btn:hover {
+    background: white;
+}
+
+/* Robot image */
+.hero-right {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.hero-right img {
+    width: 260px;          /* <-- final size */
+    height: auto;
+    display: block;
+}
+
+/* ==========================
+   FEATURE CARDS
+========================== */
+.feature-section {
+    margin-top: 50px;
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+}
+
+.feature-card {
+    flex: 1;
+    max-width: 300px;
+    background: var(--panel);
+    border: 1px solid var(--panel-border);
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    backdrop-filter: blur(6px);
+}
+
+.feature-card img {
+    width: 110px;
+    height: 110px;        /* ensures same visual height */
+    object-fit: contain;  /* keeps original aspect ratio */
+    display: block;
+    margin: 0 auto 12px;  /* centers image */
+}
+
+
+.feature-card h3 {
+    font-family: Orbitron, sans-serif;
+    margin-bottom: 8px;
+}
+
+/* ==========================
+   TRENDING PRODUCTS
+========================== */
+.section-title {
+    text-align: center;
+    margin-top: 60px;
+    font-size: 26px;
+    font-family: Orbitron, sans-serif;
+}
+
+.trend-list {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.trend-card {
+    width: 190px;
+    padding: 14px;
+    background: var(--panel);
+    border: 1px solid var(--panel-border);
+    border-radius: 12px;
+    text-align: center;
+    transition: 0.2s ease;
+}
+
+.trend-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--primary-light);
+}
+
+.trend-card img {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 8px;
+}
+
+/* ==========================
+   FOOTER
+========================== */
+.footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 10px;
+    margin-top: 40px;
+    opacity: 0.7;
+}
+
+/* ==========================
+   AUTH / LOGIN / REGISTER
+========================== */
+.auth-container {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 60px;
+    margin-bottom: 60px;
+    flex-wrap: wrap;
+}
+
+.auth-card {
+    width: 350px;
+    padding: 30px;
+    background: var(--panel);
+    border: 1px solid var(--panel-border);
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.08);
+    color: var(--text);
+    animation: fadeIn 0.35s ease;
+}
+
+.auth-title {
+    text-align: center;
+    font-family: Orbitron, sans-serif;
+    font-size: 24px;
+    margin-bottom: 12px;
+}
+
+.auth-message {
+    text-align: center;
+    color: #ff6b6b;
+    height: 18px;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.auth-field {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
+}
+
+.auth-field label {
+    margin-bottom: 6px;
+    font-size: 14px;
+    opacity: 0.85;
+}
+
+.auth-field input {
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid var(--primary);
+    background: #0b1e23;
+    color: var(--primary-light);
+    font-size: 14px;
+    transition: 0.2s ease;
+}
+
+.auth-field input:focus {
+    outline: none;
+    border-color: white;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+}
+
+.auth-btn {
+    width: 100%;
+    padding: 12px;
+    background: var(--primary);
+    color: black;
+    font-weight: bold;
+    font-size: 15px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: 0.2s ease;
+}
+
+.auth-btn:hover {
+    background: white;
+}
+
+.auth-switch {
+    margin-top: 14px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.auth-switch span {
+    color: var(--primary);
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.auth-switch span:hover {
+    text-decoration: underline;
+}
+
+/* Orders list */
+.order-list {
+    margin-top: 20px;
+    padding: 0;
+    list-style: none;
+}
+
+.order-list li {
+    background: rgba(0, 255, 255, 0.05);
+    border: 1px solid rgba(0, 255, 255, 0.2);
+    padding: 12px;
+    border-radius: 10px;
+    margin-bottom: 12px;
+    font-size: 14px;
+}
+
+/* Simple fade animation */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==========================
+   RESPONSIVE
+========================== */
+@media(max-width: 900px) {
+    .hero-section {
+        flex-direction: column;
+        text-align: center;
+        padding: 50px 20px;
+    }
+
+    .hero-left {
+        padding-right: 0;
+    }
+
+    .hero-right img {
+        margin-top: 20px;
+        width: 220px;
+    }
+
+    .feature-section {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media(max-width: 600px) {
+    .navbar {
+        flex-direction: column;
+        gap: 10px;
+        padding-bottom: 25px;
+    }
+
+    .auth-card {
+        width: 92%;
+        padding: 22px;
+    }
+}

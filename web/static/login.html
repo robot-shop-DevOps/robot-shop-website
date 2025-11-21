@@ -1,0 +1,68 @@
+<div class="auth-container" ng-controller="loginform">
+
+    <!-- LOGIN CARD -->
+    <div class="auth-card" ng-if="view === 'login'">
+
+        <div class="auth-title">Login</div>
+        <div class="auth-subtitle">Access your account</div>
+
+        <div class="auth-message">{{ data.message }}</div>
+
+        <div class="auth-field">
+            <label>Name</label>
+            <input type="text" ng-model="loginData.name" placeholder="Enter your name">
+        </div>
+
+        <div class="auth-field">
+            <label>Password</label>
+            <input type="password" ng-model="loginData.password" placeholder="Enter your password">
+        </div>
+
+        <button class="auth-btn" ng-click="login()">Login</button>
+
+        <div class="auth-switch">
+            Don't have an account?
+            <span ng-click="view = 'register'">Register</span>
+        </div>
+
+    </div>
+
+
+    <!-- REGISTER CARD -->
+    <div class="auth-card" ng-if="view === 'register'">
+
+        <div class="auth-title">Register</div>
+        <div class="auth-subtitle">Create a new account</div>
+
+        <div class="auth-message">{{ data.message }}</div>
+
+        <div class="auth-field">
+            <label>Name</label>
+            <input type="text" ng-model="regData.name" placeholder="Full name">
+        </div>
+
+        <div class="auth-field">
+            <label>Email</label>
+            <input type="email" ng-model="regData.email" placeholder="Your email">
+        </div>
+
+        <div class="auth-field">
+            <label>Password</label>
+            <input type="password" ng-model="regData.password" placeholder="Choose a password">
+        </div>
+
+        <div class="auth-field">
+            <label>Confirm Password</label>
+            <input type="password" ng-model="regData.password2" placeholder="Repeat password">
+        </div>
+
+        <button class="auth-btn" ng-click="register()">Register</button>
+
+        <div class="auth-switch">
+            Already have an account?
+            <span ng-click="view = 'login'">Login</span>
+        </div>
+
+    </div>
+
+</div>
