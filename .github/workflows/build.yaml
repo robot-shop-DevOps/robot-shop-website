@@ -41,7 +41,7 @@ jobs:
       - name: Lint CSS files
         working-directory: web/
         run: |
-          stylelint ./**/*.css --config web/.stylelintrc.json
+          stylelint ./**/*.css --config .stylelintrc.json
 
       - name: Lint JavaScript files
         working-directory: web/
