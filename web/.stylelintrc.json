@@ -7,9 +7,15 @@
     "declaration-block-no-duplicate-properties": true,
 
     "string-quotes": null,
-
-    "selector-max-id": 1,
-    "selector-max-universal": 1,
-    "rule-empty-line-before": null
+    "length-zero-no-unit": null,
+    "color-function-notation": null,
+    "color-function-alias-notation": null,
+    "alpha-value-notation": null,
+    "declaration-empty-line-before": null,
+    "font-family-name-quotes": null,
+    "no-descending-specificity": null,
+    "keyframes-name-pattern": null,
+    "declaration-block-single-line-max-declarations": null,
+    "media-feature-range-notation": null
   }
 }
