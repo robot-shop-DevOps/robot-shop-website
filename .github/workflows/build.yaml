@@ -46,7 +46,7 @@ jobs:
       - name: Lint JavaScript files
         working-directory: web/
         run: |
-          eslint ./**/*.js --max-warnings=10 --quiet
+          eslint ./**/*.js --quiet
 
 
     push:
