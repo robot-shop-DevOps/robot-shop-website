@@ -39,7 +39,7 @@ var autoComplete = (function(){
             menuClass: '',
             renderItem: function (item, search){
                 // escape special characters
-                search = search.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+                search = search.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&');
                 var re = new RegExp("(" + search.split(' ').join('|') + ")", "gi");
                 return '<div class="autocomplete-suggestion" data-val="' + item + '">' + item.replace(re, "<b>$1</b>") + '</div>';
             },
@@ -105,7 +105,8 @@ var autoComplete = (function(){
             }, that.sc);
 
             that.blurHandler = function(){
-                try { var over_sb = document.querySelector('.autocomplete-suggestions:hover'); } catch(e){ var over_sb = 0; }
+                var over_sb;
+                try { over_sb = document.querySelector('.autocomplete-suggestions:hover'); } catch(e){ over_sb = 0; }
                 if (!over_sb) {
                     that.last_val = that.value;
                     that.sc.style.display = 'none';
@@ -129,9 +130,9 @@ var autoComplete = (function(){
 
             that.keydownHandler = function(e){
                 var key = window.event ? e.keyCode : e.which;
+                var next, sel = that.sc.querySelector('.autocomplete-suggestion.selected');
                 // down (40), up (38)
                 if ((key == 40 || key == 38) && that.sc.innerHTML) {
-                    var next, sel = that.sc.querySelector('.autocomplete-suggestion.selected');
                     if (!sel) {
                         next = (key == 40) ? that.sc.querySelector('.autocomplete-suggestion') : that.sc.childNodes[that.sc.childNodes.length - 1]; // first : last
                         next.className += ' selected';
@@ -152,7 +153,7 @@ var autoComplete = (function(){
                 else if (key == 27) { that.value = that.last_val; that.sc.style.display = 'none'; }
                 // enter
                 else if (key == 13 || key == 9) {
-                    var sel = that.sc.querySelector('.autocomplete-suggestion.selected');
+                    sel = that.sc.querySelector('.autocomplete-suggestion.selected');
                     if (sel && that.sc.style.display != 'none') { o.onSelect(e, sel.getAttribute('data-val'), sel); setTimeout(function(){ that.sc.style.display = 'none'; }, 20); }
                 }
             };
