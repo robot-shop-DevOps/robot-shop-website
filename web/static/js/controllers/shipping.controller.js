@@ -1,3 +1,5 @@
+/* global autoComplete */
+
 'use strict';
 
 angular.module('robotshop').controller('shipform', function($scope, $http, $location, currentUser) {

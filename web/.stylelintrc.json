@@ -5,8 +5,17 @@
     "block-no-empty": true,
     "color-no-invalid-hex": true,
     "declaration-block-no-duplicate-properties": true,
-    "string-quotes": "double",
-    "selector-max-id": 1,
-    "selector-max-universal": 1
+
+    "length-zero-no-unit": null,
+    "color-function-notation": null,
+    "color-function-alias-notation": null,
+    "alpha-value-notation": null,
+    "declaration-empty-line-before": null,
+    "font-family-name-quotes": null,
+    "no-descending-specificity": null,
+    "keyframes-name-pattern": null,
+    "declaration-block-single-line-max-declarations": null,
+    "media-feature-range-notation": null,
+    "rule-empty-line-before": null
   }
 }
