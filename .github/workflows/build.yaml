@@ -71,4 +71,5 @@ jobs:
           --account-name ${{ env.AZURE_STORAGE_ACCOUNT }} \
           --destination ${{ env.AZURE_STORAGE_CONTAINER }} \
           --source web \
-          --overwrite 
+          --overwrite \
+          --auth-mode login
