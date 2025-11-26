@@ -70,6 +70,6 @@ jobs:
           az storage blob upload-batch \
           --account-name ${{ env.AZURE_STORAGE_ACCOUNT }} \
           --destination ${{ env.AZURE_STORAGE_CONTAINER }} \
-          --source web \
+          --source web/static \
           --overwrite \
           --auth-mode login
