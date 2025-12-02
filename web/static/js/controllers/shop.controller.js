@@ -71,6 +71,10 @@ angular.module('robotshop').controller('shopform', function($scope, $http, $loca
         }
     };
 
+    $scope.startShopping = function () {
+        $location.url('/search');   // go to search page
+    };
+
     /* -----------------------------------
        INIT: Load Categories, Featured, UUID
     ----------------------------------- */
