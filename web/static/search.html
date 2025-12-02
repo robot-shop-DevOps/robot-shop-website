@@ -1,29 +1,37 @@
 <div class="search-page">
 
     <!-- No results -->
-    <div ng-if="data.searchResults.length === 0">
-        <p>Sorry, nothing matches your search.</p>
+    <div ng-if="data.searchResults.length === 0" class="no-results">
+        <h2>No results found</h2>
+        <p>Sorry, nothing matches your search. Try different keywords.</p>
     </div>
 
     <!-- Results -->
     <div ng-if="data.searchResults.length > 0">
-        <h3>These excellent candidates match your search</h3>
+        <div class="search-header">
+            <h2>Search Results</h2>
+            <p class="result-count">{{ data.searchResults.length }} products found</p>
+        </div>
 
-        <table class="search-table">
-            <tbody>
-                <tr ng-repeat="item in data.searchResults">
-                    <td>
-                        <a class="product" href="product/{{ item.sku }}">
-                            {{ item.name }}
-                        </a>
-                    </td>
-                    <td>{{ item.description }}</td>
-                    <td class="currency">
-                        €{{ (item.price || 0) | number:2 }}
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="products-grid">
+            <div class="product-card" ng-repeat="item in data.searchResults">
+                <a href="#!/product/{{ item.sku }}" class="product-link">
+                    <div class="product-image">
+                        <img ng-src="/images/{{ item.sku }}.png" 
+                             alt="{{ item.name }}"
+                             onerror="this.src='/images/robot.png'">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">{{ item.name }}</h3>
+                        <p class="product-description">{{ item.description }}</p>
+                        <div class="product-price">
+                            <span class="currency">€</span>
+                            <span class="amount">{{ (item.price || 0) | number:2 }}</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
     </div>
 
 </div>
