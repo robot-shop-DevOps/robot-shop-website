@@ -14,11 +14,23 @@ angular.module('robotshop').controller('mainController', function($scope, $locat
         }
     };
 
+    $scope.logout = function () {
+        currentUser.clearUser();
+    };
+
     // Watch for cart changes
     $scope.$watch(
-        () => currentUser.cart.total,
+        () => currentUser.state.cart.total,
         () => {
-            $scope.data.cart = currentUser.cart;
+            $scope.data.cart = currentUser.state.cart;
+        }
+    );
+
+    // watch login state
+    $scope.$watch(
+        () => currentUser.state.user,
+        () => {
+            $scope.data.user = currentUser.state.user;
         }
     );
 });

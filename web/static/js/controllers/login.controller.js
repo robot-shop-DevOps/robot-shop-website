@@ -39,10 +39,10 @@ angular.module('robotshop').controller('loginform', function($scope, $http, $loc
         })
         .then(res => {
 
-            const oldId = currentUser.uniqueid;
+            const oldId = currentUser.state.uniqueid;
 
-            currentUser.user = res.data;
-            currentUser.uniqueid = res.data.name;
+            currentUser.setUser(res.data);
+            currentUser.state.uniqueid = res.data.name;
 
             // Move cart
             $http.get('/api/cart/rename/' + oldId + '/' + res.data.name)

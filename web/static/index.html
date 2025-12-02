@@ -24,7 +24,16 @@
     </div>
 
     <div class="nav-links">
-      <a href="#!/login">Login</a>
+
+      <!-- If NOT logged in -->
+      <a ng-if="!data.user" href="#!/login">Login</a>
+
+      <!-- If logged in -->
+      <span ng-if="data.user">
+          {{ data.user.name || data.user.username }}
+          <a href="" ng-click="logout()">Logout</a>
+      </span>
+
       <a href="#!/cart">Cart ({{ data.cart.total || 0 }})</a>
     </div>
   </div>
