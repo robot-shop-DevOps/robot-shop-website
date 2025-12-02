@@ -1,7 +1,7 @@
 <div class="auth-container" ng-controller="loginform">
 
     <!-- LOGIN CARD -->
-    <div class="auth-card" ng-if="$parent.view === 'login'">
+    <div class="auth-card" ng-show="view === 'login'">
 
         <div class="auth-title">Login</div>
         <div class="auth-subtitle">Access your account</div>
@@ -22,14 +22,14 @@
 
         <div class="auth-switch">
             Don't have an account?
-            <span ng-click="$parent.view = 'register'">Register</span>
+            <span ng-click="view = 'register'">Register</span>
         </div>
 
     </div>
 
 
     <!-- REGISTER CARD -->
-    <div class="auth-card" ng-if="$parent.view === 'register'">
+    <div class="auth-card" ng-show="view === 'register'">
 
         <div class="auth-title">Register</div>
         <div class="auth-subtitle">Create a new account</div>
@@ -60,7 +60,7 @@
 
         <div class="auth-switch">
             Already have an account?
-            <span ng-click="$parent.view = 'login'">Login</span>
+            <span ng-click="view = 'login'">Login</span>
         </div>
 
     </div>
