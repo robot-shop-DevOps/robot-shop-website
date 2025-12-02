@@ -2,6 +2,8 @@
 
 angular.module('robotshop').controller('shopform', function($scope, $http, $location, currentUser) {
 
+    console.log('shopform controller loaded!');
+
     $scope.data = {
         uniqueid: '',
         categories: [],
@@ -72,8 +74,11 @@ angular.module('robotshop').controller('shopform', function($scope, $http, $loca
     };
 
     $scope.startShopping = function () {
+        console.log('startShopping function defined!');
         $location.url('/search');   // go to search page
     };
+
+    console.log('startShopping on scope:', $scope.startShopping);
 
     /* -----------------------------------
        INIT: Load Categories, Featured, UUID
