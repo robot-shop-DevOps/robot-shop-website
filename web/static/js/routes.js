@@ -8,7 +8,7 @@ function($routeProvider, $locationProvider) {
             templateUrl: 'splash.html',
             controller: 'shopform'
         })
-        .when('/search/:text', {
+        .when('/search/:text?', {
             templateUrl: 'search.html',
             controller: 'searchform'
         })
