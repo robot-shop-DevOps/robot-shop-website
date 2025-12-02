@@ -106,9 +106,9 @@ angular.module('robotshop').controller('shopform', function($scope, $http, $loca
        Watch for Cart Changes
     ----------------------------------- */
     $scope.$watch(
-        () => currentUser.cart.total,
+        () => currentUser.state.cart.total,
         () => {
-            $scope.data.cart = currentUser.cart;
+            $scope.data.cart = currentUser.state.cart;
         }
     );
 });
