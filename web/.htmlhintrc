@@ -9,7 +9,7 @@
   "head-script-disabled": false,
   "id-class-value": "dash",
   "spec-char-escape": true,
-  "attr-value-not-empty": true,
+  "attr-value-not-empty": false,
   "img-alt-require": true,
   "doctype-html5": true,
   "title-require": true
