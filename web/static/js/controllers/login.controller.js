@@ -42,10 +42,10 @@ angular.module('robotshop').controller('loginform', function($scope, $http, $loc
             const oldId = currentUser.state.uniqueid;
 
             currentUser.setUser(res.data);
-            currentUser.state.uniqueid = res.data.name;
+            currentUser.state.uniqueid = res.data._id;
 
             // Move cart
-            $http.get('/api/cart/rename/' + oldId + '/' + res.data.name)
+            $http.get('/api/cart/rename/' + oldId + '/' + res.data._id)
                 .catch(() => {});
 
             loadHistory(res.data.name);
