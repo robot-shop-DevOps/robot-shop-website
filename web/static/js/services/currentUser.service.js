@@ -13,6 +13,7 @@ angular.module('robotshop').factory('currentUser', function() {
 
         setUser(user) {
             state.user = user;
+            state.uniqueid = user._id;
         },
 
         clearUser() {
