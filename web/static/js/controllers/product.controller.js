@@ -5,8 +5,16 @@ angular.module('robotshop').controller('productform', function($scope, $http, $r
         message: ' ',
         product: {},
         rating: { avg_rating: 0 },
-        quantity: 1
+        quantity: 1,
+        user: currentUser.state.user
     };
+
+    $scope.$watch(
+        () => currentUser.state.user,
+        () => {
+            $scope.data.user = currentUser.state.user;
+        }
+    );
 
     $scope.addToCart = function() {
         if (!currentUser.isLoggedIn()) {
