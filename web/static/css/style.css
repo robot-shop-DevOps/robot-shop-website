@@ -370,7 +370,7 @@ body {
 }
 
 .cart-header h1 {
-    margin: 0 0 5px 0;
+    margin: 0 0 5px;
     color: var(--primary);
     font-size: 2em;
     font-family: 'Orbitron', sans-serif;
@@ -402,12 +402,12 @@ body {
 .empty-cart h2 {
     color: var(--primary);
     font-family: 'Orbitron', sans-serif;
-    margin: 0 0 10px 0;
+    margin: 0 0 10px;
 }
 
 .empty-cart p {
     color: var(--text);
-    margin: 0 0 25px 0;
+    margin: 0 0 25px;
 }
 
 /* Cart Content */
@@ -465,7 +465,7 @@ body {
 }
 
 .item-name {
-    margin: 0 0 5px 0;
+    margin: 0 0 5px;
     color: var(--primary);
     font-size: 1.1em;
     font-weight: 600;
@@ -473,7 +473,7 @@ body {
 }
 
 .item-sku {
-    margin: 0 0 5px 0;
+    margin: 0 0 5px;
     color: var(--primary-light);
     font-size: 0.85em;
     opacity: 0.7;
@@ -594,7 +594,7 @@ body {
 }
 
 .cart-summary h2 {
-    margin: 0 0 20px 0;
+    margin: 0 0 20px;
     color: var(--primary);
     font-size: 1.3em;
     font-family: 'Orbitron', sans-serif;
