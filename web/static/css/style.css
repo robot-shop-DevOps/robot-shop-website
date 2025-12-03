@@ -19,6 +19,8 @@ body {
     color: var(--text);
 }
 
+/* ==============================================================================================*/
+
 /* ==========================
    NAVBAR
 ========================== */
@@ -68,6 +70,8 @@ body {
     font-weight: bold;
 }
 
+/* ==============================================================================================*/
+
 /* ==========================
    MAIN WRAPPER
 ========================== */
@@ -76,6 +80,8 @@ body {
     max-width: 1200px;
     margin: 40px auto;
 }
+
+/* ==============================================================================================*/
 
 /* ==========================
    HERO SECTION (FIXED)
@@ -135,6 +141,8 @@ body {
     display: block;
 }
 
+/* ==============================================================================================*/
+
 /* ==========================
    FEATURE CARDS
 ========================== */
@@ -169,6 +177,8 @@ body {
     font-family: Orbitron, sans-serif;
     margin-bottom: 8px;
 }
+
+/* ==============================================================================================*/
 
 /* ==========================
    TRENDING PRODUCTS
@@ -208,6 +218,8 @@ body {
     border-radius: 10px;
     margin-bottom: 8px;
 }
+
+/* ==============================================================================================*/
 
 /* ==========================
    SEARCH PAGE STYLES
@@ -353,6 +365,8 @@ body {
 .product-price .amount {
     color: var(--primary-light);
 }
+
+/* ==============================================================================================*/
 
 /* ==========================
    PRODUCT PAGE STYLES
@@ -544,7 +558,7 @@ body {
     font-family: 'Orbitron', sans-serif;
     font-size: 36px;
     color: var(--primary);
-    margin: 0 0 10px 0;
+    margin: 0 0 10px;
     line-height: 1.2;
 }
 
@@ -612,7 +626,7 @@ body {
 }
 
 /* Description */
-.product-description {
+.product-description-product-page {
     background: var(--panel);
     border: 1px solid var(--panel-border);
     border-radius: 15px;
@@ -621,14 +635,14 @@ body {
     backdrop-filter: blur(6px);
 }
 
-.product-description h3 {
+.product-description-product-page h3 {
     font-family: 'Orbitron', sans-serif;
     color: var(--primary);
-    margin: 0 0 15px 0;
+    margin: 0 0 15px;
     font-size: 20px;
 }
 
-.product-description p {
+.product-description-product-page p {
     color: var(--text);
     line-height: 1.7;
     margin: 0;
@@ -721,6 +735,8 @@ body {
     padding: 30px;
     backdrop-filter: blur(6px);
 }
+
+/* ==============================================================================================*/
 
 /* ==========================
    SHOPPING CART STYLES
@@ -986,6 +1002,8 @@ body {
     transform: translateY(-2px);
 }
 
+/* ==============================================================================================*/
+
 /* ==========================
    FOOTER
 ========================== */
@@ -996,6 +1014,8 @@ body {
     margin-top: 40px;
     opacity: 0.7;
 }
+
+/* ==============================================================================================*/
 
 /* ==========================
    AUTH / LOGIN / REGISTER
@@ -1119,6 +1139,8 @@ body {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
 }
+
+/* ==============================================================================================*/
 
 /* ==========================
    RESPONSIVE
