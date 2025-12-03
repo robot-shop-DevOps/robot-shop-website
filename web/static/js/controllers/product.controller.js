@@ -9,7 +9,13 @@ angular.module('robotshop').controller('productform', function($scope, $http, $r
     };
 
     $scope.addToCart = function() {
-        var url = '/api/cart/add/' + currentUser.uniqueid + '/' + $scope.data.product.sku + '/' + $scope.data.quantity;
+        if (!currentUser.isLoggedIn()) {
+            $scope.data.message = "You must log in first.";
+            $timeout(clearMessage, 3000);
+            return;
+        }
+
+        var url = '/api/cart/add/' + currentUser.state.uniqueid + '/' + $scope.data.product.sku + '/' + $scope.data.quantity;
 
         $http.get(url)
             .then(res => {
