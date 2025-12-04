@@ -1,30 +1,50 @@
 'use strict';
 
-angular.module('robotshop').controller('paymentform', function($scope, $http, currentUser) {
+angular.module('robotshop').controller('paymentform', function($scope, $http, $location, currentUser) {
+
+    // Require login
+    if (!currentUser.isLoggedIn()) {
+        $location.url('/login');
+        return;
+    }
+
     $scope.data = {
-        message: ' ',
+        message: '',
         buttonDisabled: false,
         cont: false,
-        uniqueid: currentUser.uniqueid,
-        cart: currentUser.cart
+        username: currentUser.state.username,
+        cart: currentUser.state.cart
     };
 
+    /* -----------------------------------
+       Complete Payment
+    ----------------------------------- */
     $scope.pay = function() {
+
         $scope.data.buttonDisabled = true;
 
-        $http.post('/api/payment/pay/' + $scope.data.uniqueid, $scope.data.cart)
-            .then(res => {
-                $scope.data.message = 'Order placed ' + res.data.orderid;
+        const username = $scope.data.username;
 
-                $scope.data.cart = { total: 0, items: [] };
-                currentUser.cart = $scope.data.cart;
+        $http.post('/api/payment/pay/' + username,
+            $scope.data.cart,
+            { headers: currentUser.getAuthHeader() }
+        )
+        .then(res => {
 
-                $scope.data.cont = true;
-            })
-            .catch(e => {
-                console.log('ERROR', e);
-                $scope.data.message = 'ERROR placing order';
-                $scope.data.buttonDisabled = false;
-            });
+            $scope.data.message = 'Order placed ' + res.data.orderid;
+
+            // Clear cart after payment
+            const emptyCart = { total: 0, items: [] };
+            $scope.data.cart = emptyCart;
+            currentUser.state.cart = emptyCart;
+
+            $scope.data.cont = true;
+        })
+        .catch(e => {
+            console.log('ERROR', e);
+            $scope.data.message = 'ERROR placing order';
+            $scope.data.buttonDisabled = false;
+        });
     };
+
 });

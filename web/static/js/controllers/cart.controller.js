@@ -1,44 +1,73 @@
 'use strict';
 
 angular.module('robotshop').controller('cartform', function($scope, $http, $location, currentUser) {
+
+    // If user is not logged in → redirect to login
+    if (!currentUser.isLoggedIn()) {
+        $location.url('/login');
+        return;
+    }
+
     $scope.data = {
         cart: { total: 0 },
-        uniqueid: currentUser.uniqueid
+        username: currentUser.state.username
     };
 
+    /* -----------------------------------
+       Go to Shipping
+    ----------------------------------- */
     $scope.buy = function() {
         $location.url('/shipping');
     };
 
+    /* -----------------------------------
+       Update Item Quantity
+    ----------------------------------- */
     $scope.change = function(sku, qty) {
-        var url = '/api/cart/update/' + $scope.data.uniqueid + '/' + sku + '/' + qty;
 
-        $http.get(url)
-            .then(res => {
-                $scope.data.cart = res.data;
-                currentUser.cart = res.data;
-            })
-            .catch(e => console.log('ERROR', e));
+        const url = '/api/cart/update/' 
+            + $scope.data.username + '/' + sku + '/' + qty;
+
+        $http.get(url, {
+            headers: currentUser.getAuthHeader()
+        })
+        .then(res => {
+            $scope.data.cart = res.data;
+            currentUser.state.cart = res.data;
+        })
+        .catch(e => console.log('ERROR', e));
     };
 
-    function loadCart(id) {
-        $http.get('/api/cart/cart/' + id)
-            .then(res => {
-                var cart = res.data;
+    /* -----------------------------------
+       Load Cart
+    ----------------------------------- */
+    function loadCart(username) {
 
-                if (cart.items[cart.items.length - 1].sku === 'SHIP') {
-                    $http.get('/api/cart/update/' + id + '/SHIP/0')
-                        .then(clean => {
-                            currentUser.cart = clean.data;
-                            $scope.data.cart = clean.data;
-                        })
-                        .catch(e => console.log('ERROR', e));
-                } else {
-                    $scope.data.cart = cart;
-                }
-            })
-            .catch(e => console.log('ERROR', e));
+        $http.get('/api/cart/cart/' + username, {
+            headers: currentUser.getAuthHeader()
+        })
+        .then(res => {
+            let cart = res.data;
+
+            // Remove "SHIP" item if backend auto adds it
+            if (cart.items && cart.items.length > 0 &&
+                cart.items[cart.items.length - 1].sku === 'SHIP') {
+
+                $http.get('/api/cart/update/' + username + '/SHIP/0', {
+                    headers: currentUser.getAuthHeader()
+                })
+                .then(clean => {
+                    currentUser.state.cart = clean.data;
+                    $scope.data.cart = clean.data;
+                })
+                .catch(e => console.log('ERROR', e));
+
+            } else {
+                $scope.data.cart = cart;
+            }
+        })
+        .catch(e => console.log('ERROR', e));
     }
 
-    loadCart($scope.data.uniqueid);
+    loadCart($scope.data.username);
 });

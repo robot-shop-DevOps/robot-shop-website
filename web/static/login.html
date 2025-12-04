@@ -6,7 +6,10 @@
         <div class="auth-title">Login</div>
         <div class="auth-subtitle">Access your account</div>
 
-        <div class="auth-message">{{ message }}</div>
+        <!-- Login Message (error or success after register) -->
+        <div class="auth-message" ng-if="message">
+            {{ message }}
+        </div>
 
         <div class="auth-field">
             <label>Name</label>
@@ -22,7 +25,7 @@
 
         <div class="auth-switch">
             Don't have an account?
-            <span ng-click="view = 'register'">Register</span>
+            <span ng-click="switch()">Register</span>
         </div>
 
     </div>
@@ -34,7 +37,10 @@
         <div class="auth-title">Register</div>
         <div class="auth-subtitle">Create a new account</div>
 
-        <div class="auth-message">{{ rmessage }}</div>
+        <!-- Registration message -->
+        <div class="auth-message" ng-if="rmessage">
+            {{ rmessage }}
+        </div>
 
         <div class="auth-field">
             <label>Name</label>
@@ -60,7 +66,7 @@
 
         <div class="auth-switch">
             Already have an account?
-            <span ng-click="view = 'login'">Login</span>
+            <span ng-click="switch()">Login</span>
         </div>
 
     </div>

@@ -3,12 +3,10 @@
 angular.module('robotshop').controller('shopform', function($scope, $http, $location, currentUser) {
 
     $scope.data = {
-        uniqueid: '',
         categories: [],
         products: {},
         searchText: '',
-        cart: { total: 0 },
-        featured: []  // NEW: For modern homepage
+        featured: []
     };
 
     /* -----------------------------------
@@ -23,27 +21,14 @@ angular.module('robotshop').controller('shopform', function($scope, $http, $loca
     }
 
     /* -----------------------------------
-       Load Featured Products (NEW)
+       Load Featured Products
     ----------------------------------- */
     function loadFeatured() {
         $http.get('/api/catalogue/products')
             .then(res => {
-                // Show first 6 items as featured products
                 $scope.data.featured = res.data.slice(0, 6);
             })
             .catch(err => console.error('Error loading featured products:', err));
-    }
-
-    /* -----------------------------------
-       Get Unique ID
-    ----------------------------------- */
-    function fetchUniqueId() {
-        return $http.get('/api/user/uniqueid')
-            .then(res => res.data.uuid)
-            .catch(err => {
-                console.error('Error fetching uuid:', err);
-                throw err;
-            });
     }
 
     /* -----------------------------------
@@ -72,43 +57,24 @@ angular.module('robotshop').controller('shopform', function($scope, $http, $loca
     };
 
     $scope.startShopping = function () {
-        $location.url('/search');   // go to search page
+        $location.url('/search');
     };
 
     /* -----------------------------------
-       INIT: Load Categories, Featured, UUID
+       INIT
     ----------------------------------- */
     loadCategories();
-    loadFeatured();   // NEW
-
-    if (!currentUser.uniqueid) {
-        fetchUniqueId().then(id => {
-            $scope.data.uniqueid = id;
-            currentUser.uniqueid = id;
-        });
-    } else {
-        $scope.data.uniqueid = currentUser.uniqueid;
-    }
+    loadFeatured();
 
     /* -----------------------------------
-       Watch for Login/User Change
+       Watch for User Login Changes
+       (optional UI updates)
     ----------------------------------- */
     $scope.$watch(
-        () => currentUser.uniqueid,
-        (newVal, oldVal) => {
-            if (newVal !== oldVal) {
-                $scope.data.uniqueid = newVal;
-            }
+        () => currentUser.isLoggedIn(),
+        (loggedIn) => {
+            $scope.loggedIn = loggedIn;
         }
     );
 
-    /* -----------------------------------
-       Watch for Cart Changes
-    ----------------------------------- */
-    $scope.$watch(
-        () => currentUser.state.cart.total,
-        () => {
-            $scope.data.cart = currentUser.state.cart;
-        }
-    );
 });

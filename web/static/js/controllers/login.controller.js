@@ -4,7 +4,7 @@
 angular.module('robotshop').controller('loginform', function($scope, $http, $location, currentUser) {
 
     // ---- UI STATE ----
-    $scope.view = 'login';  // login | register
+    $scope.view = 'login';
     $scope.message = '';
     $scope.rmessage = '';
 
@@ -30,7 +30,6 @@ angular.module('robotshop').controller('loginform', function($scope, $http, $loc
 
     // ---- LOGIN ----
     $scope.login = function () {
-
         $scope.message = '';
 
         $http.post('/api/user/login', {
@@ -39,19 +38,16 @@ angular.module('robotshop').controller('loginform', function($scope, $http, $loc
         })
         .then(res => {
 
-            const oldId = currentUser.state.uniqueid;
+            const token = res.data.token;
 
-            currentUser.setUser(res.data);
-            currentUser.state.uniqueid = res.data._id;
+            // Store JWT + username
+            currentUser.setLoginData(token, $scope.loginData.name);
 
-            // Move cart
-            $http.get('/api/cart/rename/' + oldId + '/' + res.data._id)
-                .catch(() => {});
+            loadHistory($scope.loginData.name);
 
-            loadHistory(res.data.name);
-
-            // Redirect after login
+            // Redirect
             $location.url('/');
+
         })
         .catch(err => {
             $scope.message = 'Invalid username or password';
@@ -74,7 +70,7 @@ angular.module('robotshop').controller('loginform', function($scope, $http, $loc
             password: $scope.regData.password.trim()
         })
         .then(() => {
-            // After registration → switch back to login
+            // Switch to login view
             $scope.switch();
             $scope.message = "Registration successful! Please log in.";
         })
@@ -85,11 +81,13 @@ angular.module('robotshop').controller('loginform', function($scope, $http, $loc
 
     // ---- LOAD ORDER HISTORY ----
     function loadHistory(name) {
-        $http.get('/api/user/history/' + name)
-            .then(res => { 
-                $scope.orderHistory = res.data.history; 
-            })
-            .catch(() => {});
+        $http.get('/api/user/history/' + name, { 
+            headers: currentUser.getAuthHeader()
+        })
+        .then(res => { 
+            $scope.orderHistory = res.data.history; 
+        })
+        .catch(() => {});
     }
 
 });

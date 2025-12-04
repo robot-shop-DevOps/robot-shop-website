@@ -1,45 +1,55 @@
 <div class="shipping-page">
 
-    <h3>Shipping Information</h3>
-
-    <!-- Country Selection -->
-    <div class="shipping-field">
-        <label>Select country</label>
-        <select ng-model="data.selectedCountry"
-                ng-change="countryChanged()"
-                ng-options="opt as opt.name for opt in data.countries track by opt.code">
-        </select>
+    <!-- Optional: Fail-safe for anonymous users -->
+    <div ng-if="!data.loggedIn" class="login-required">
+        <h3>Please log in to access shipping</h3>
+        <a href="#!/login" class="btn-primary">Go to Login</a>
     </div>
 
-    <!-- Location autocomplete -->
-    <div class="shipping-field">
-        <label>Enter location</label>
-        <input id="location"
-               type="text"
-               size="20"
-               ng-model="data.selectedLocation"
-               ng-disabled="data.disableCity" />
-    </div>
+    <div ng-if="data.loggedIn">
 
-    <!-- Calculate shipping -->
-    <div class="shipping-field">
-        <button ng-click="calcShipping()"
-                ng-disabled="data.disableCalc">
-            Calculate
-        </button>
-    </div>
+        <h3>Shipping Information</h3>
 
-    <!-- Show shipping results -->
-    <div ng-if="data.shipping" class="shipping-result">
-        <div>Distance: {{ (data.shipping.distance || 0) | number:0 }} km</div>
-        <div>
-            Cost:
-            €{{ (data.shipping.cost || 0) | number:2 }}
+        <!-- Country Selection -->
+        <div class="shipping-field">
+            <label>Select country</label>
+            <select ng-model="data.selectedCountry"
+                    ng-change="countryChanged()"
+                    ng-options="opt as opt.name for opt in data.countries track by opt.code">
+            </select>
         </div>
 
-        <div class="confirm-field">
-            <button ng-click="confirmShipping()">Confirm</button>
+        <!-- Location autocomplete -->
+        <div class="shipping-field">
+            <label>Enter location</label>
+            <input id="location"
+                   type="text"
+                   size="20"
+                   ng-model="data.selectedLocation"
+                   ng-disabled="data.disableCity" />
         </div>
+
+        <!-- Calculate shipping -->
+        <div class="shipping-field">
+            <button ng-click="calcShipping()"
+                    ng-disabled="data.disableCalc">
+                Calculate
+            </button>
+        </div>
+
+        <!-- Show shipping results -->
+        <div ng-if="data.shipping" class="shipping-result">
+            <div>Distance: {{ (data.shipping.distance || 0) | number:0 }} km</div>
+            <div>
+                Cost:
+                €{{ (data.shipping.cost || 0) | number:2 }}
+            </div>
+
+            <div class="confirm-field">
+                <button ng-click="confirmShipping()">Confirm</button>
+            </div>
+        </div>
+
     </div>
 
 </div>

@@ -3,9 +3,25 @@
     <!-- HERO SECTION -->
     <section class="hero-section">
         <div class="hero-left">
-            <h1>Welcome to Robot Shop</h1>
+
+            <!-- Dynamic Welcome -->
+            <h1 ng-if="data.loggedIn">
+                Welcome back, {{ data.username }}!
+            </h1>
+            <h1 ng-if="!data.loggedIn">
+                Welcome to Robot Shop
+            </h1>
+
             <p>Your one-stop shop for premium robots, parts, and accessories.</p>
+
+            <!-- Main CTA -->
             <button class="cta-btn" ng-click="startShopping()">Start Shopping</button>
+
+            <!-- Optional Login CTA -->
+            <div ng-if="!data.loggedIn" class="login-cta">
+                <p>Have an account?</p>
+                <a href="#!/login" class="login-btn">Login</a>
+            </div>
         </div>
 
         <div class="hero-right">
@@ -36,4 +52,5 @@
         </div>
 
     </section>
+
 </div>
