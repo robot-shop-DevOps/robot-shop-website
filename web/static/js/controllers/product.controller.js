@@ -43,6 +43,12 @@ angular.module('robotshop').controller('productform', function(
             encodeURIComponent($scope.data.product.sku) + '/' +
             $scope.data.quantity;
 
+        console.log('Adding to cart:', {
+            username: username,
+            sku: $scope.data.product.sku,
+            url: url
+        });
+
         $http.get(url, {
             headers: currentUser.getAuthHeader()
         })
