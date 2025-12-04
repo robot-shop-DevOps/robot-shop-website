@@ -4,108 +4,98 @@
         <h1>Shopping Cart</h1>
     </div>
 
-    <!-- Fail-safe: Login required -->
-    <div ng-if="!data.loggedIn" class="login-required">
-        <h2>You must log in to view your cart</h2>
-        <a href="#!/login" class="btn-primary">Go to Login</a>
+    <!-- Empty Cart State -->
+    <div ng-if="data.cart.total == 0" class="empty-cart">
+        <div class="empty-cart-icon">🛒</div>
+        <h2>Your cart is empty</h2>
+        <p>Looks like you haven't added anything to your cart yet</p>
+        <a href="#!/search" class="btn-primary">Start Shopping</a>
     </div>
 
-    <!-- Cart content (only when logged in) -->
-    <div ng-if="data.loggedIn">
+    <!-- Cart with Items -->
+    <div ng-if="data.cart.total != 0" class="cart-content">
 
-        <!-- Empty Cart State -->
-        <div ng-if="data.cart.total == 0" class="empty-cart">
-            <div class="empty-cart-icon">🛒</div>
-            <h2>Your cart is empty</h2>
-            <p>Looks like you haven't added anything to your cart yet</p>
-            <a href="#!/search" class="btn-primary">Start Shopping</a>
+        <div class="cart-items">
+            <div class="cart-item" ng-repeat="item in data.cart.items">
+
+                <div class="item-image">
+                    <img ng-src="images/{{ item.sku }}.png"
+                         alt="{{ item.name }}"
+                         onerror="this.src='images/robot.png'">
+                </div>
+
+                <div class="item-details">
+                    <h3 class="item-name">{{ item.name }}</h3>
+                    <p class="item-sku">SKU: {{ item.sku }}</p>
+                    <p class="item-price">
+                        &euro;{{ (item.subtotal / item.qty).toFixed(2) }} each
+                    </p>
+                </div>
+
+                <div class="item-quantity">
+                    <label>Quantity</label>
+                    <div class="qty-controls">
+                        <button class="qty-btn"
+                                ng-click="change(item.sku, item.qty - 1)"
+                                ng-disabled="item.qty <= 0">-</button>
+
+                        <input type="number"
+                               min="0"
+                               max="10"
+                               ng-model="item.qty"
+                               ng-change="change(item.sku, item.qty)"
+                               class="qty-input"/>
+
+                        <button class="qty-btn"
+                                ng-click="change(item.sku, item.qty + 1)"
+                                ng-disabled="item.qty >= 10">+</button>
+                    </div>
+                </div>
+
+                <div class="item-subtotal">
+                    <label>Subtotal</label>
+                    <p class="price">&euro;{{ item.subtotal.toFixed(2) }}</p>
+                </div>
+
+                <div class="item-remove">
+                    <button class="btn-remove"
+                            ng-click="change(item.sku, 0)"
+                            title="Remove item">
+                        <span>×</span>
+                    </button>
+                </div>
+
+            </div>
         </div>
 
-        <!-- Cart with Items -->
-        <div ng-if="data.cart.total != 0" class="cart-content">
+        <!-- Cart Summary -->
+        <div class="cart-summary">
+            <h2>Order Summary</h2>
 
-            <div class="cart-items">
-                <div class="cart-item" ng-repeat="item in data.cart.items">
-
-                    <div class="item-image">
-                        <img ng-src="images/{{ item.sku }}.png"
-                             alt="{{ item.name }}"
-                             onerror="this.src='images/robot.png'">
-                    </div>
-
-                    <div class="item-details">
-                        <h3 class="item-name">{{ item.name }}</h3>
-                        <p class="item-sku">SKU: {{ item.sku }}</p>
-                        <p class="item-price">
-                            &euro;{{ (item.subtotal / item.qty).toFixed(2) }} each
-                        </p>
-                    </div>
-
-                    <div class="item-quantity">
-                        <label>Quantity</label>
-                        <div class="qty-controls">
-                            <button class="qty-btn"
-                                    ng-click="change(item.sku, item.qty - 1)"
-                                    ng-disabled="item.qty <= 0">-</button>
-
-                            <input type="number"
-                                   min="0"
-                                   max="10"
-                                   ng-model="item.qty"
-                                   ng-change="change(item.sku, item.qty)"
-                                   class="qty-input"/>
-
-                            <button class="qty-btn"
-                                    ng-click="change(item.sku, item.qty + 1)"
-                                    ng-disabled="item.qty >= 10">+</button>
-                        </div>
-                    </div>
-
-                    <div class="item-subtotal">
-                        <label>Subtotal</label>
-                        <p class="price">&euro;{{ item.subtotal.toFixed(2) }}</p>
-                    </div>
-
-                    <div class="item-remove">
-                        <button class="btn-remove"
-                                ng-click="change(item.sku, 0)"
-                                title="Remove item">
-                            <span>×</span>
-                        </button>
-                    </div>
-
-                </div>
+            <div class="summary-row">
+                <span>Subtotal</span>
+                <span>
+                    &euro;{{ (data.cart.total - data.cart.tax).toFixed(2) }}
+                </span>
             </div>
 
-            <!-- Cart Summary -->
-            <div class="cart-summary">
-                <h2>Order Summary</h2>
-
-                <div class="summary-row">
-                    <span>Subtotal</span>
-                    <span>
-                        &euro;{{ (data.cart.total - data.cart.tax).toFixed(2) }}
-                    </span>
-                </div>
-
-                <div class="summary-row">
-                    <span>Tax</span>
-                    <span>&euro;{{ data.cart.tax.toFixed(2) }}</span>
-                </div>
-
-                <div class="summary-row total">
-                    <span>Total</span>
-                    <span>&euro;{{ data.cart.total.toFixed(2) }}</span>
-                </div>
-
-                <button class="btn-checkout" ng-click="buy()">
-                    Proceed to Checkout
-                </button>
-
-                <a href="#!/search" class="btn-continue">Continue Shopping</a>
+            <div class="summary-row">
+                <span>Tax</span>
+                <span>&euro;{{ data.cart.tax.toFixed(2) }}</span>
             </div>
 
+            <div class="summary-row total">
+                <span>Total</span>
+                <span>&euro;{{ data.cart.total.toFixed(2) }}</span>
+            </div>
+
+            <button class="btn-checkout" ng-click="buy()">
+                Proceed to Checkout
+            </button>
+
+            <a href="#!/search" class="btn-continue">Continue Shopping</a>
         </div>
 
     </div>
+
 </div>
