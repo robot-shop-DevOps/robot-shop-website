@@ -39,8 +39,8 @@ angular.module('robotshop').controller('productform', function(
 
         const url =
             '/api/cart/add/' +
-            username + '/' +
-            $scope.data.product.sku + '/' +
+            encodeURIComponent(username) + '/' +
+            encodeURIComponent($scope.data.product.sku) + '/' +
             $scope.data.quantity;
 
         $http.get(url, {
