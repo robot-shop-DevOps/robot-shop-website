@@ -45,7 +45,7 @@ angular.module('robotshop').controller('shipform', function($scope, $http, $loca
 
         const username = currentUser.state.username;
 
-        $http.post('/api/shipping/confirm/' + username,
+        $http.post('/api/shipping/confirm/' + encodeURIComponent(username),
             $scope.data.shipping,
             { headers: currentUser.getAuthHeader() }
         )
