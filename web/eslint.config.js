@@ -10,16 +10,22 @@ module.exports = [
         es6: true
       },
       globals: {
-        angular: "readonly",
-        browser: true,
+        // browser globals
         window: "readonly",
         document: "readonly",
+        localStorage: "readonly",
+        navigator: "readonly",
+        location: "readonly",
+        history: "readonly",
+        setTimeout: "readonly",
+        clearTimeout: "readonly",
+
+        // your app globals
+        angular: "readonly",
         console: "readonly",
         module: "readonly",
         define: "readonly",
-        setTimeout: "readonly",
-        clearTimeout: "readonly",
-        getComputedStyle: "readonly",
+        getComputedStyle: "readonly"
       }
     },
     rules: {
