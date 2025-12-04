@@ -74,7 +74,7 @@ angular.module('robotshop').controller('productform', function(
             return;
         }
 
-        var url = '/api/rate/' + $scope.data.product.sku + '/' + score;
+        var url = '/api/ratings/rate/' + $scope.data.product.sku + '/' + score;
 
         $http.put(url, {}, {
             headers: currentUser.getAuthHeader()
@@ -112,7 +112,7 @@ angular.module('robotshop').controller('productform', function(
        Load rating
     ----------------------------------- */
     function loadRating(sku) {
-        $http.get('/api/ratings/api/fetch/' + sku)
+        $http.get('/api/ratings/fetch/' + sku)
             .then(res => { $scope.data.rating = res.data; })
             .catch(e => console.log('ERROR', e));
     }
