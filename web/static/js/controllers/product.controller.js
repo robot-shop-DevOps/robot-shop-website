@@ -67,15 +67,28 @@ angular.module('robotshop').controller('productform', function(
        Rate Product (public)
     ----------------------------------- */
     $scope.rateProduct = function(score) {
-        var url = '/api/ratings/api/rate/' + $scope.data.product.sku + '/' + score;
 
-        $http.put(url)
-            .then(() => {
-                $scope.data.message = 'Thank you for your feedback';
-                $timeout(clearMessage, 3000);
-                loadRating($scope.data.product.sku);
-            })
-            .catch(e => console.log('ERROR', e));
+        if (!currentUser.isLoggedIn()) {
+            $scope.data.message = "You must log in first to rate products.";
+            $timeout(clearMessage, 3000);
+            return;
+        }
+
+        var url = '/api/rate/' + $scope.data.product.sku + '/' + score;
+
+        $http.put(url, {}, {
+            headers: currentUser.getAuthHeader()
+        })
+        .then(() => {
+            $scope.data.message = 'Thank you for your feedback';
+            $timeout(clearMessage, 3000);
+            loadRating($scope.data.product.sku);
+        })
+        .catch(e => {
+            console.log('ERROR submitting rating', e);
+            $scope.data.message = 'Failed to submit rating';
+            $timeout(clearMessage, 3000);
+        });
     };
 
     $scope.glowstan = function(vote, val) {
