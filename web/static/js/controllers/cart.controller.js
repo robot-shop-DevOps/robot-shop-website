@@ -26,7 +26,9 @@ angular.module('robotshop').controller('cartform', function($scope, $http, $loca
     $scope.change = function(sku, qty) {
 
         const url = '/api/cart/update/' 
-            + $scope.data.username + '/' + sku + '/' + qty;
+            + encodeURIComponent($scope.data.username) + '/' 
+            + encodeURIComponent(sku) + '/' 
+            + qty;
 
         $http.get(url, {
             headers: currentUser.getAuthHeader()
@@ -43,7 +45,7 @@ angular.module('robotshop').controller('cartform', function($scope, $http, $loca
     ----------------------------------- */
     function loadCart(username) {
 
-        $http.get('/api/cart/cart/' + username, {
+        $http.get('/api/cart/cart/' + encodeURIComponent(username), {
             headers: currentUser.getAuthHeader()
         })
         .then(res => {
@@ -53,7 +55,8 @@ angular.module('robotshop').controller('cartform', function($scope, $http, $loca
             if (cart.items && cart.items.length > 0 &&
                 cart.items[cart.items.length - 1].sku === 'SHIP') {
 
-                $http.get('/api/cart/update/' + username + '/SHIP/0', {
+                $http.get('/api/cart/update/' 
+                    + encodeURIComponent(username) + '/SHIP/0', {
                     headers: currentUser.getAuthHeader()
                 })
                 .then(clean => {
