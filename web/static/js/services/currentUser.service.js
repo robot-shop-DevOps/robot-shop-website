@@ -1,27 +1,41 @@
 'use strict';
 
 angular.module('robotshop').factory('currentUser', function() {
-    
+
     let state = {
-        uniqueid: '',
-        user: null,    // null when logged out
+        token: localStorage.getItem("token") || null,
+        username: localStorage.getItem("username") || null,
         cart: { total: 0 }
     };
 
     return {
+
         state: state,
 
-        setUser(user) {
-            state.user = user;
-            state.uniqueid = user._id;
+        setLoginData(token, username) {
+            state.token = token;
+            state.username = username;
+
+            // persist across page reloads
+            localStorage.setItem("token", token);
+            localStorage.setItem("username", username);
         },
 
         clearUser() {
-            state.user = null;
+            state.token = null;
+            state.username = null;
+
+            localStorage.removeItem("token");
+            localStorage.removeItem("username");
         },
 
         isLoggedIn() {
-            return !!state.user;
+            return !!state.token;   // user considered logged in if token exists
+        },
+
+        getAuthHeader() {
+            if (!state.token) return {};
+            return { Authorization: "Bearer " + state.token };
         }
     };
 });

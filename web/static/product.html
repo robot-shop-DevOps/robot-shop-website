@@ -90,12 +90,13 @@
             <!-- Add to Cart Section -->
             <div class="product-actions" ng-if="data.product.instock > 0">
 
-                <!-- Login Warning -->
-                <div class="login-warning" ng-if="!data.user">
+                <!-- Login Warning (JWT-aware) -->
+                <div class="login-warning" ng-if="!data.loggedIn">
                     <span>Please log in to add items to your cart.</span>
                 </div>
 
-                <div class="quantity-selector">
+                <!-- Quantity Selector (only for logged-in users) -->
+                <div class="quantity-selector" ng-if="data.loggedIn">
                     <label>Quantity</label>
                     <div class="qty-controls">
                         <button class="qty-btn" 
@@ -115,7 +116,7 @@
                 <!-- Add to Cart button -->
                 <button class="add-to-cart-btn" 
                         ng-click="addToCart()"
-                        ng-disabled="!data.user">
+                        ng-disabled="!data.loggedIn">
                     <span class="btn-icon">🛒</span>
                     Add to Cart
                 </button>

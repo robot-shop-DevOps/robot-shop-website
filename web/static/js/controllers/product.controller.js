@@ -1,42 +1,65 @@
 'use strict';
 
-angular.module('robotshop').controller('productform', function($scope, $http, $routeParams, $timeout, currentUser) {
+angular.module('robotshop').controller('productform', function(
+    $scope, $http, $routeParams, $timeout, currentUser
+) {
+
     $scope.data = {
-        message: ' ',
+        message: '',
         product: {},
         rating: { avg_rating: 0 },
         quantity: 1,
-        user: currentUser.state.user
+        username: currentUser.state.username,
+        loggedIn: currentUser.isLoggedIn()
     };
 
+    /* -----------------------------------
+       Watch login state
+    ----------------------------------- */
     $scope.$watch(
-        () => currentUser.state.user,
-        () => {
-            $scope.data.user = currentUser.state.user;
+        () => currentUser.state.username,
+        (newVal) => {
+            $scope.data.username = newVal;
+            $scope.data.loggedIn = currentUser.isLoggedIn();
         }
     );
 
+    /* -----------------------------------
+       Add to Cart (JWT-protected)
+    ----------------------------------- */
     $scope.addToCart = function() {
+
         if (!currentUser.isLoggedIn()) {
             $scope.data.message = "You must log in first.";
             $timeout(clearMessage, 3000);
             return;
         }
 
-        var url = '/api/cart/add/' + currentUser.state.uniqueid + '/' + $scope.data.product.sku + '/' + $scope.data.quantity;
+        const username = currentUser.state.username;
 
-        $http.get(url)
-            .then(res => {
-                currentUser.cart = res.data;
-                $scope.data.message = 'Added to cart';
-                $timeout(clearMessage, 3000);
-            })
-            .catch(e => {
-                $scope.data.message = 'ERROR ' + e;
-                $timeout(clearMessage, 3000);
-            });
+        const url =
+            '/api/cart/add/' +
+            username + '/' +
+            $scope.data.product.sku + '/' +
+            $scope.data.quantity;
+
+        $http.get(url, {
+            headers: currentUser.getAuthHeader()
+        })
+        .then(res => {
+            currentUser.state.cart = res.data;
+            $scope.data.message = 'Added to cart';
+            $timeout(clearMessage, 3000);
+        })
+        .catch(e => {
+            $scope.data.message = 'ERROR adding to cart';
+            $timeout(clearMessage, 3000);
+        });
     };
 
+    /* -----------------------------------
+       Rate Product (public)
+    ----------------------------------- */
     $scope.rateProduct = function(score) {
         var url = '/api/ratings/api/rate/' + $scope.data.product.sku + '/' + score;
 
@@ -57,12 +80,18 @@ angular.module('robotshop').controller('productform', function($scope, $http, $r
         }
     };
 
+    /* -----------------------------------
+       Load product data
+    ----------------------------------- */
     function loadProduct(sku) {
         $http.get('/api/catalogue/product/' + sku)
             .then(res => { $scope.data.product = res.data; })
             .catch(e => console.log('ERROR', e));
     }
 
+    /* -----------------------------------
+       Load rating
+    ----------------------------------- */
     function loadRating(sku) {
         $http.get('/api/ratings/api/fetch/' + sku)
             .then(res => { $scope.data.rating = res.data; })
@@ -70,9 +99,12 @@ angular.module('robotshop').controller('productform', function($scope, $http, $r
     }
 
     function clearMessage() {
-        $scope.data.message = ' ';
+        $scope.data.message = '';
     }
 
+    /* -----------------------------------
+       INIT
+    ----------------------------------- */
     loadProduct($routeParams.sku);
     loadRating($routeParams.sku);
 });
