@@ -5,6 +5,10 @@ module.exports = [
     languageOptions: {
       ecmaVersion: 12,
       sourceType: "script",   // browser scripts, NOT modules
+      env: {
+        browser: true,   // <--- THIS fixes localStorage warning
+        es6: true
+      },
       globals: {
         angular: "readonly",
         browser: true,
@@ -18,7 +22,6 @@ module.exports = [
         getComputedStyle: "readonly",
       }
     },
-
     rules: {
       // ESLint recommended (manually inlined)
       "constructor-super": "error",
