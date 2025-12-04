@@ -5,10 +5,6 @@ module.exports = [
     languageOptions: {
       ecmaVersion: 12,
       sourceType: "script",   // browser scripts, NOT modules
-      env: {
-        browser: true,   // <--- THIS fixes localStorage warning
-        es6: true
-      },
       globals: {
         // browser globals
         window: "readonly",
