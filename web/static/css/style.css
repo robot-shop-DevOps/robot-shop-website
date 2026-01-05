@@ -1256,6 +1256,299 @@ body {
 /* ============================================================================================== */
 
 /* ==========================
+   PAYMENT PAGE STYLES
+========================== */
+
+.payment-page {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.login-required {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 400px;
+}
+
+.login-card {
+    background: rgba(0, 255, 255, 0.05);
+    border: 2px solid #00ffff;
+    border-radius: 12px;
+    padding: 60px 40px;
+    text-align: center;
+    max-width: 400px;
+}
+
+.login-card h3 {
+    color: #00ffff;
+    font-size: 24px;
+    margin-bottom: 30px;
+}
+
+.payment-container {
+    animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.payment-header {
+    margin-bottom: 30px;
+}
+
+.payment-header h2 {
+    color: #00ffff;
+    font-size: 32px;
+    margin-bottom: 8px;
+}
+
+.user-info {
+    color: #fff;
+    opacity: 0.7;
+    font-size: 16px;
+}
+
+.user-info strong {
+    color: #00ffff;
+    opacity: 1;
+}
+
+.order-summary {
+    background: rgba(0, 255, 255, 0.05);
+    border: 1px solid rgba(0, 255, 255, 0.3);
+    border-radius: 12px;
+    padding: 30px;
+    margin-bottom: 20px;
+}
+
+.order-items h3 {
+    color: #00ffff;
+    font-size: 20px;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+}
+
+.item-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(0, 255, 255, 0.2);
+    border-radius: 8px;
+    margin-bottom: 12px;
+    transition: all 0.2s ease;
+}
+
+.item-card:hover {
+    background: rgba(0, 255, 255, 0.08);
+    border-color: rgba(0, 255, 255, 0.4);
+}
+
+.item-details {
+    flex: 1;
+}
+
+.item-name {
+    color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.item-qty {
+    color: #fff;
+    opacity: 0.6;
+    font-size: 14px;
+}
+
+.item-price {
+    color: #00ffff;
+    font-size: 20px;
+    font-weight: 600;
+    margin-left: 20px;
+}
+
+.order-totals {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(0, 255, 255, 0.2);
+}
+
+.total-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    color: #fff;
+    font-size: 16px;
+}
+
+.tax-row {
+    opacity: 0.7;
+}
+
+.grand-total {
+    font-size: 24px;
+    font-weight: 600;
+    color: #00ffff;
+    padding-top: 20px;
+    margin-top: 10px;
+    border-top: 2px solid rgba(0, 255, 255, 0.3);
+}
+
+.payment-actions {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.pay-button {
+    background: #00ffff;
+    color: #0a1f2e;
+    border: none;
+    padding: 18px 60px;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.pay-button:hover:not(:disabled) {
+    background: #00e5e5;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(0, 255, 255, 0.3);
+}
+
+.pay-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.btn-primary, .btn-secondary {
+    display: inline-block;
+    padding: 15px 40px;
+    background: #00ffff;
+    color: #0a1f2e;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: 2px solid #00ffff;
+}
+
+.btn-primary:hover {
+    background: #00e5e5;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(0, 255, 255, 0.3);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: #00ffff;
+}
+
+.btn-secondary:hover {
+    background: rgba(0, 255, 255, 0.1);
+}
+
+.empty-cart {
+    text-align: center;
+    padding: 80px 20px;
+    background: rgba(0, 255, 255, 0.05);
+    border: 1px solid rgba(0, 255, 255, 0.3);
+    border-radius: 12px;
+}
+
+.empty-cart p {
+    color: #fff;
+    font-size: 20px;
+    margin-bottom: 30px;
+    opacity: 0.7;
+}
+
+.payment-message {
+    margin-top: 20px;
+}
+
+.message-card {
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.message-card.success {
+    background: rgba(0, 255, 0, 0.1);
+    border: 1px solid rgba(0, 255, 0, 0.3);
+    color: #00ff00;
+}
+
+.message-card.error {
+    background: rgba(255, 0, 0, 0.1);
+    border: 1px solid rgba(255, 0, 0, 0.3);
+    color: #ff6b6b;
+}
+
+.payment-complete {
+    text-align: center;
+    padding: 60px 20px;
+    background: rgba(0, 255, 255, 0.05);
+    border: 2px solid #00ffff;
+    border-radius: 12px;
+    animation: successPulse 0.5s ease;
+}
+
+@keyframes successPulse {
+    0% { transform: scale(0.95); opacity: 0; }
+    50% { transform: scale(1.02); }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.success-icon {
+    width: 80px;
+    height: 80px;
+    background: #00ffff;
+    color: #0a1f2e;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+    font-weight: bold;
+    margin: 0 auto 30px;
+    animation: checkmark 0.6s ease;
+}
+
+@keyframes checkmark {
+    0% { transform: scale(0) rotate(-45deg); }
+    50% { transform: scale(1.1) rotate(5deg); }
+    100% { transform: scale(1) rotate(0deg); }
+}
+
+.payment-complete h3 {
+    color: #00ffff;
+    font-size: 28px;
+    margin-bottom: 15px;
+}
+
+.payment-complete p {
+    color: #fff;
+    opacity: 0.7;
+    font-size: 16px;
+    margin-bottom: 30px;
+}
+
+/* ============================================================================================== */
+
+/* ==========================
    AUTH / LOGIN / REGISTER
 ========================== */
 .auth-container {
@@ -1577,5 +1870,27 @@ body {
     
     .result-value {
         font-size: 1em;
+    }
+}
+
+@media (max-width: 768px) {
+    .payment-page {
+        padding: 0 15px;
+        margin: 20px auto;
+    }
+    
+    .item-card {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .item-price {
+        margin-left: 0;
+        margin-top: 10px;
+    }
+    
+    .pay-button {
+        width: 100%;
+        padding: 18px 20px;
     }
 }

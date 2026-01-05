@@ -13,7 +13,7 @@ angular.module('robotshop').controller('paymentform', function($scope, $http, $l
         buttonDisabled: false,
         cont: false,
         username: currentUser.state.username,
-        loggedIn: currentUser.isLoggedIn(),  // ← ADD THIS LINE
+        loggedIn: currentUser.isLoggedIn(),
         cart: currentUser.state.cart
     };
 
