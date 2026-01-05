@@ -1274,7 +1274,7 @@ body {
 
 .login-card {
     background: rgba(0, 255, 255, 0.05);
-    border: 2px solid #00ffff;
+    border: 2px solid #0ff;
     border-radius: 12px;
     padding: 60px 40px;
     text-align: center;
@@ -1282,7 +1282,7 @@ body {
 }
 
 .login-card h3 {
-    color: #00ffff;
+    color: #0ff;
     font-size: 24px;
     margin-bottom: 30px;
 }
@@ -1301,7 +1301,7 @@ body {
 }
 
 .payment-header h2 {
-    color: #00ffff;
+    color: #0ff;
     font-size: 32px;
     margin-bottom: 8px;
 }
@@ -1313,7 +1313,7 @@ body {
 }
 
 .user-info strong {
-    color: #00ffff;
+    color: #0ff;
     opacity: 1;
 }
 
@@ -1326,7 +1326,7 @@ body {
 }
 
 .order-items h3 {
-    color: #00ffff;
+    color: #0ff;
     font-size: 20px;
     margin-bottom: 20px;
     padding-bottom: 10px;
@@ -1350,11 +1350,11 @@ body {
     border-color: rgba(0, 255, 255, 0.4);
 }
 
-.item-details {
+.item-details-payment {
     flex: 1;
 }
 
-.item-name {
+.item-name-payment {
     color: #fff;
     font-size: 18px;
     font-weight: 500;
@@ -1367,8 +1367,8 @@ body {
     font-size: 14px;
 }
 
-.item-price {
-    color: #00ffff;
+.item-price-payment {
+    color: #0ff;
     font-size: 20px;
     font-weight: 600;
     margin-left: 20px;
@@ -1395,7 +1395,7 @@ body {
 .grand-total {
     font-size: 24px;
     font-weight: 600;
-    color: #00ffff;
+    color: #0ff;
     padding-top: 20px;
     margin-top: 10px;
     border-top: 2px solid rgba(0, 255, 255, 0.3);
@@ -1407,7 +1407,7 @@ body {
 }
 
 .pay-button {
-    background: #00ffff;
+    background: #0ff;
     color: #0a1f2e;
     border: none;
     padding: 18px 60px;
@@ -1434,16 +1434,16 @@ body {
 .btn-primary, .btn-secondary {
     display: inline-block;
     padding: 15px 40px;
-    background: #00ffff;
+    background: #0ff;
     color: #0a1f2e;
     text-decoration: none;
     border-radius: 8px;
     font-weight: 600;
     transition: all 0.3s ease;
-    border: 2px solid #00ffff;
+    border: 2px solid #0ff;
 }
 
-.btn-primary:hover {
+.btn-primary-payment:hover {
     background: #00e5e5;
     transform: translateY(-2px);
     box-shadow: 0 10px 30px rgba(0, 255, 255, 0.3);
@@ -1451,14 +1451,14 @@ body {
 
 .btn-secondary {
     background: transparent;
-    color: #00ffff;
+    color: #0ff;
 }
 
 .btn-secondary:hover {
     background: rgba(0, 255, 255, 0.1);
 }
 
-.empty-cart {
+.empty-cart-payment {
     text-align: center;
     padding: 80px 20px;
     background: rgba(0, 255, 255, 0.05);
@@ -1466,7 +1466,7 @@ body {
     border-radius: 12px;
 }
 
-.empty-cart p {
+.empty-cart-payment p {
     color: #fff;
     font-size: 20px;
     margin-bottom: 30px;
@@ -1488,7 +1488,7 @@ body {
 .message-card.success {
     background: rgba(0, 255, 0, 0.1);
     border: 1px solid rgba(0, 255, 0, 0.3);
-    color: #00ff00;
+    color: #0f0;
 }
 
 .message-card.error {
@@ -1501,7 +1501,7 @@ body {
     text-align: center;
     padding: 60px 20px;
     background: rgba(0, 255, 255, 0.05);
-    border: 2px solid #00ffff;
+    border: 2px solid #0ff;
     border-radius: 12px;
     animation: successPulse 0.5s ease;
 }
@@ -1515,7 +1515,7 @@ body {
 .success-icon {
     width: 80px;
     height: 80px;
-    background: #00ffff;
+    background: #0ff;
     color: #0a1f2e;
     border-radius: 50%;
     display: flex;
@@ -1534,7 +1534,7 @@ body {
 }
 
 .payment-complete h3 {
-    color: #00ffff;
+    color: #0ff;
     font-size: 28px;
     margin-bottom: 15px;
 }

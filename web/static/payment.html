@@ -4,7 +4,7 @@
     <div ng-if="!data.loggedIn" class="login-required">
         <div class="login-card">
             <h3>Please log in to complete your payment</h3>
-            <a href="#!/login" class="btn-primary">Go to Login</a>
+            <a href="#!/login" class="btn-primary-payment">Go to Login</a>
         </div>
     </div>
 
@@ -22,11 +22,11 @@
             <div class="order-items">
                 <h3>Order Items</h3>
                 <div class="item-card" ng-repeat="item in data.cart.items">
-                    <div class="item-details">
-                        <div class="item-name">{{ item.name }}</div>
+                    <div class="item-details-payment">
+                        <div class="item-name-payment">{{ item.name }}</div>
                         <div class="item-qty">Quantity: {{ item.qty }}</div>
                     </div>
-                    <div class="item-price">
+                    <div class="item-price-payment">
                         €{{ (item.subtotal || 0) | number:2 }}
                     </div>
                 </div>
@@ -62,7 +62,7 @@
         </div>
 
         <!-- Empty cart message -->
-        <div ng-if="data.cart.total == 0 && !data.cont" class="empty-cart">
+        <div ng-if="data.cart.total == 0 && !data.cont" class="empty-cart-payment">
             <p>Your cart is empty</p>
             <a href="/" class="btn-secondary">Continue Shopping</a>
         </div>
@@ -79,7 +79,7 @@
             <div class="success-icon">✓</div>
             <h3>Order Placed Successfully!</h3>
             <p>Thank you for your purchase. We'll send you a confirmation email shortly.</p>
-            <a class="btn-primary" href="/">Continue Shopping</a>
+            <a class="btn-primary-payment" href="/">Continue Shopping</a>
         </div>
 
     </div>
