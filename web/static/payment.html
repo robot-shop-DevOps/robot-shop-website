@@ -2,79 +2,84 @@
 
     <!-- Fail-safe for anonymous users -->
     <div ng-if="!data.loggedIn" class="login-required">
-        <h3>Please log in to complete your payment</h3>
-        <a href="#!/login" class="btn-primary">Go to Login</a>
+        <div class="login-card">
+            <h3>Please log in to complete your payment</h3>
+            <a href="#!/login" class="btn-primary-payment">Go to Login</a>
+        </div>
     </div>
 
     <!-- Payment content for logged-in users only -->
-    <div ng-if="data.loggedIn">
+    <div ng-if="data.loggedIn" class="payment-container">
 
-        <h3>Review your order</h3>
+        <div class="payment-header">
+            <h2>Review Your Order</h2>
+            <p class="user-info">Ordering as: <strong>{{ data.username }}</strong></p>
+        </div>
 
         <!-- Cart Summary -->
-        <div ng-if="data.cart.total > 0">
-            <table class="payment-table">
+        <div ng-if="data.cart.total > 0" class="order-summary">
+            
+            <div class="order-items">
+                <h3>Order Items</h3>
+                <div class="item-card" ng-repeat="item in data.cart.items">
+                    <div class="item-details-payment">
+                        <div class="item-name-payment">{{ item.name }}</div>
+                        <div class="item-qty">Quantity: {{ item.qty }}</div>
+                    </div>
+                    <div class="item-price-payment">
+                        €{{ (item.subtotal || 0) | number:2 }}
+                    </div>
+                </div>
+            </div>
 
-                <thead>
-                    <tr>
-                        <th>QTY</th>
-                        <th>Name</th>
-                        <th>Sub Total</th>
-                    </tr>
-                </thead>
+            <div class="order-totals">
+                <div class="total-row subtotal-row">
+                    <span>Subtotal</span>
+                    <span>€{{ ((data.cart.total - data.cart.tax) || 0) | number:2 }}</span>
+                </div>
+                
+                <div class="total-row tax-row">
+                    <span>Tax</span>
+                    <span>€{{ (data.cart.tax || 0) | number:2 }}</span>
+                </div>
+                
+                <div class="total-row grand-total">
+                    <span>Total</span>
+                    <span>€{{ (data.cart.total || 0) | number:2 }}</span>
+                </div>
+            </div>
 
-                <tbody>
-                    <tr ng-repeat="item in data.cart.items">
-                        <td>{{ item.qty }}</td>
-                        <td>{{ item.name }}</td>
-                        <td class="currency">
-                            €{{ (item.subtotal || 0) | number:2 }}
-                        </td>
-                    </tr>
-                </tbody>
+            <div class="payment-actions">
+                <button 
+                    class="pay-button"
+                    ng-click="pay()"
+                    ng-disabled="data.buttonDisabled || data.cart.total == 0">
+                    <span ng-if="!data.buttonDisabled">Complete Payment</span>
+                    <span ng-if="data.buttonDisabled">Processing...</span>
+                </button>
+            </div>
 
-                <tfoot>
-                    <tr><td colspan="3">&nbsp;</td></tr>
+        </div>
 
-                    <tr>
-                        <td></td>
-                        <td>Inc Tax</td>
-                        <td class="currency">
-                            €{{ (data.cart.tax || 0) | number:2 }}
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td></td>
-                        <td>Total</td>
-                        <td class="currency">
-                            €{{ (data.cart.total || 0) | number:2 }}
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td colspan="3" style="text-align:center">
-                            <button 
-                                ng-click="pay()"
-                                ng-disabled="data.buttonDisabled || data.cart.total == 0">
-                                Pay Now
-                            </button>
-                        </td>
-                    </tr>
-                </tfoot>
-
-            </table>
+        <!-- Empty cart message -->
+        <div ng-if="data.cart.total == 0 && !data.cont" class="empty-cart-payment">
+            <p>Your cart is empty</p>
+            <a href="/" class="btn-secondary">Continue Shopping</a>
         </div>
 
         <!-- Payment message -->
-        <div class="message" ng-if="data.message">
-            {{ data.message }}
+        <div class="payment-message" ng-if="data.message">
+            <div class="message-card" ng-class="{'success': data.cont, 'error': !data.cont}">
+                {{ data.message }}
+            </div>
         </div>
 
         <!-- Continue after success -->
         <div ng-if="data.cont" class="payment-complete">
-            <p>Thank you for your order!</p>
-            <a class="cont" href="/">Continue shopping</a>
+            <div class="success-icon">✓</div>
+            <h3>Order Placed Successfully!</h3>
+            <p>Thank you for your purchase. We'll send you a confirmation email shortly.</p>
+            <a class="btn-primary-payment" href="/">Continue Shopping</a>
         </div>
 
     </div>
