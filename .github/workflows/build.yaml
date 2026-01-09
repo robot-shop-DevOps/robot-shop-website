@@ -15,5 +15,6 @@ jobs:
   deploy:
     uses: robot-shop-DevOps/robot-shop-github-actions/.github/workflows/static-sites.yaml@main
     with:
-      WORKING_DIR: ./web/static
+      WORKING_DIR: ./web
+      UPLOAD_DIR: ./web/static
     secrets: inherit
